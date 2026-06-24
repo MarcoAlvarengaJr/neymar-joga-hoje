@@ -83,6 +83,12 @@ function lerVotos(PDO $pdo): array {
     return $out;
 }
 
+// Converte um TIMESTAMPTZ do Postgres (com microssegundos) em ISO-8601.
+// DateTimeImmutable é robusto onde strtotime() falha com a fração de segundos.
+function isoData(string $ts): string {
+    return (new DateTimeImmutable($ts))->format('c');
+}
+
 // ---- Roteamento ----
 try {
     $cfg    = carregarConfig();
@@ -119,7 +125,7 @@ try {
             return [
                 'nome'      => $l['nome'],
                 'texto'     => $l['texto'],
-                'criado_em' => date('c', strtotime($l['criado_em'])),
+                'criado_em' => isoData($l['criado_em']),
             ];
         }, $linhas));
     }
@@ -142,7 +148,7 @@ try {
         responder([
             'nome'      => $nome,
             'texto'     => $texto,
-            'criado_em' => date('c', strtotime($criado)),
+            'criado_em' => isoData($criado),
         ]);
     }
 

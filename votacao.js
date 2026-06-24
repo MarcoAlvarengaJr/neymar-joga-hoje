@@ -32,7 +32,14 @@
 
   var API = "api.php";
 
-  function pegarJson(resp) { return resp.json(); }
+  function pegarJson(resp) {
+    if (!resp.ok) {
+      return resp.json().catch(function () { return {}; }).then(function (e) {
+        throw new Error((e && e.erro) || ("HTTP " + resp.status));
+      });
+    }
+    return resp.json();
+  }
 
   var NeymarAPI = {
     getVotes: function () {
