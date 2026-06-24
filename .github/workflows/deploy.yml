@@ -24,3 +24,4 @@ jobs:
           user: ${{ secrets.USER }}
           password: ${{ secrets.PASS }}
           localDir: "dist"
+          remoteDir: "/home/neymarjogahoje1/"
