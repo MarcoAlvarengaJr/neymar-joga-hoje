@@ -21,11 +21,12 @@ npx serve .
 
 ## Anúncios (Google AdSense)
 
-Os espaços de anúncio já estão no HTML como placeholders comentados. Para ativar:
+O loader do AdSense já está no `<head>` do `index.html` (client `ca-pub-2576699165737130`).
 
-1. No `<head>` do `index.html`, descomente o script do AdSense e troque `ca-pub-XXXX` pelo seu ID.
-2. Descomente as tags `<ins class="adsbygoogle">` dentro de cada `.ad__slot`.
-3. Descomente a chamada `adsbygoogle.push({})` no final do `script.js`.
+- **Auto Ads** (mais simples): funciona só com o loader — basta ativar Auto Ads no painel do AdSense.
+- **Blocos fixos** (`.ad__slot` no HTML): crie as unidades no painel, pegue os `data-ad-slot` reais e então:
+  1. descomente as tags `<ins class="adsbygoogle">` dentro de cada `.ad__slot` (trocando `data-ad-client`/`data-ad-slot` pelos valores reais);
+  2. descomente a chamada `adsbygoogle.push({})` no final do `script.js`.
 
 ## Estrutura
 
