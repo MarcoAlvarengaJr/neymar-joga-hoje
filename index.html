@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>O Neymar joga hoje?</title>
+  <meta name="description" content="Descubra agora se o Neymar joga hoje. A resposta definitiva, atualizada em tempo real." />
+  <meta name="theme-color" content="#0a0a0a" />
+
+  <!-- Open Graph / compartilhamento -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="O Neymar joga hoje?" />
+  <meta property="og:description" content="A resposta definitiva. Descubra agora." />
+  <meta property="og:locale" content="pt_BR" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;600;800&display=swap" rel="stylesheet" />
+
+  <!-- Google AdSense (substitua ca-pub-XXXX pelo seu ID) -->
+  <!--
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script>
+  -->
+
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!-- Anúncio lateral esquerdo (desktop) -->
+  <aside class="ad ad--side ad--left" aria-hidden="true">
+    <div class="ad__slot">
+      <span class="ad__label">Publicidade</span>
+      <!-- <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-XXXX" data-ad-slot="0000000000" data-ad-format="vertical"></ins> -->
+    </div>
+  </aside>
+
+  <!-- Anúncio lateral direito (desktop) -->
+  <aside class="ad ad--side ad--right" aria-hidden="true">
+    <div class="ad__slot">
+      <span class="ad__label">Publicidade</span>
+      <!-- <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-XXXX" data-ad-slot="0000000000" data-ad-format="vertical"></ins> -->
+    </div>
+  </aside>
+
+  <main class="stage">
+    <h1 class="question">O Neymar joga hoje?</h1>
+
+    <!-- Resultado: começa escondido no mobile até chacoalhar -->
+    <div class="answer" id="answer" data-state="hidden">
+      <span class="answer__text" id="answerText">NÃO</span>
+    </div>
+
+    <!-- Instrução de chacoalhar (somente mobile, antes do resultado) -->
+    <div class="shake-hint" id="shakeHint" hidden>
+      <div class="shake-hint__icon" aria-hidden="true">📱</div>
+      <p class="shake-hint__text">Chacoalhe o celular<br />para descobrir</p>
+    </div>
+
+    <p class="updated" id="updated">Atualizado agora há pouco</p>
+
+    <button class="share" id="shareBtn" type="button">Compartilhar</button>
+  </main>
+
+  <!-- Anúncio inferior (mobile) -->
+  <aside class="ad ad--bottom" aria-hidden="true">
+    <div class="ad__slot">
+      <span class="ad__label">Publicidade</span>
+      <!-- <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-XXXX" data-ad-slot="0000000000" data-ad-format="horizontal"></ins> -->
+    </div>
+  </aside>
+
+  <footer class="footer">
+    <span id="year"></span> · feito na zoeira ⚽ · <a href="#" id="aboutLink">sobre</a>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
