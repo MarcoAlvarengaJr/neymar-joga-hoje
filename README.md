@@ -36,4 +36,23 @@ styles.css   estilos e responsividade
 script.js    detecção de chacoalhada, compartilhamento e lógica
 ```
 
+## Backend (votos e comentários)
+
+A votação e os comentários são persistidos por uma API PHP de arquivo único (`api.php`)
+sobre PostgreSQL.
+
+**Rodar local:**
+
+```bash
+php -S localhost:8000
+```
+
+Abra http://localhost:8000. A API lê as credenciais de `.env.local` (não versionado).
+
+**Rotas:** `GET/POST api.php?r=votos` e `GET/POST api.php?r=comentarios`.
+
+**Produção:** o deploy (GitHub Actions) publica `api.php` e gera `config.php` a partir dos
+secrets `DB_HOST`, `DB_PORT`, `DB_NAME`, `DB_USER`, `DB_PASS`. As tabelas são criadas
+automaticamente na primeira chamada.
+
 Feito na zoeira. 🇧🇷

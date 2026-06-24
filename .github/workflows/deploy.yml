@@ -15,7 +15,23 @@ jobs:
       - name: Monta a pasta dist (so os arquivos do site)
         run: |
           mkdir -p dist
-          cp index.html styles.css script.js votacao.js robots.txt sitemap.xml dist/
+          cp index.html styles.css script.js votacao.js robots.txt sitemap.xml api.php dist/
+
+      - name: Gera config.php a partir dos secrets
+        run: |
+          php -r '$c = [
+              "DB_HOST" => getenv("DB_HOST"),
+              "DB_PORT" => getenv("DB_PORT"),
+              "DB_NAME" => getenv("DB_NAME"),
+              "DB_USER" => getenv("DB_USER"),
+              "DB_PASS" => getenv("DB_PASS"),
+          ]; file_put_contents("dist/config.php", "<?php return " . var_export($c, true) . ";\n");'
+        env:
+          DB_HOST: ${{ secrets.DB_HOST }}
+          DB_PORT: ${{ secrets.DB_PORT }}
+          DB_NAME: ${{ secrets.DB_NAME }}
+          DB_USER: ${{ secrets.DB_USER }}
+          DB_PASS: ${{ secrets.DB_PASS }}
 
       - name: FTP Deploy Locaweb
         uses: locaweb/ftp-deploy@1.0.0

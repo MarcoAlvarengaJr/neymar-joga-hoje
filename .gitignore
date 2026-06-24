@@ -19,3 +19,7 @@ desktop.ini
 .env
 .env.local
 .env.*.local
+
+# Backend / build
+config.php
+dist/
