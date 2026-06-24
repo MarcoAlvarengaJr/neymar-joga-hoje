@@ -6,15 +6,14 @@ A resposta, no melhor estilo zoeira, é um **NÃO** gigante no meio da tela.
 
 ## Como funciona
 
-- **Desktop** — a resposta aparece direto, com espaços de anúncio nas laterais.
-- **Mobile** — o site pede pra você **chacoalhar o celular** pra revelar o resultado (usa a API de movimento do aparelho). Anúncio numa faixa na parte de baixo.
+- **Desktop e mobile** — a resposta aparece direto na tela. Anúncios nas laterais (desktop) e numa faixa embaixo (mobile).
 - Botão de **compartilhar** nativo e meta tags de Open Graph pro preview em redes sociais.
 
 ## Rodando localmente
 
 É só abrir o `index.html` no navegador. Sem build, sem dependências.
 
-Para testar a chacoalhada no celular, sirva os arquivos via HTTP (alguns sensores exigem contexto seguro):
+Se preferir servir via HTTP local:
 
 ```bash
 npx serve .
@@ -33,7 +32,7 @@ Os espaços de anúncio já estão no HTML como placeholders comentados. Para at
 ```
 index.html   estrutura da página
 styles.css   estilos e responsividade
-script.js    detecção de chacoalhada, compartilhamento e lógica
+script.js    busca a resposta, compartilhamento e lógica
 ```
 
 ## Backend (votos e comentários)
