@@ -9,6 +9,13 @@
 
   yearEl.textContent = new Date().getFullYear();
 
+  // Helper de analytics (no-op se o gtag nao carregou)
+  function track(name, params) {
+    if (typeof window.gtag === "function") {
+      window.gtag("event", name, params || {});
+    }
+  }
+
   // A resposta. É piada: quase sempre "NÃO".
   // (1 em ~1000 ele "joga", só pra render compartilhamento)
   var joga = Math.random() < 0.001;
@@ -32,6 +39,10 @@
       answerEl.classList.add("shook");
       vibrate([30, 40, 30]);
     }
+    track("resultado_revelado", {
+      resposta: joga ? "sim" : "nao",
+      via: viaShake ? "chacoalhada" : "automatico"
+    });
   }
 
   function vibrate(pattern) {
@@ -106,6 +117,7 @@
   shareBtn.addEventListener("click", function () {
     var url = location.href;
     var text = "O Neymar joga hoje? " + (joga ? "SIM!" : "NÃO.");
+    track("compartilhar", { resposta: joga ? "sim" : "nao" });
     if (navigator.share) {
       navigator.share({ title: "O Neymar joga hoje?", text: text, url: url })
         .catch(function () {});
