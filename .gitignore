@@ -14,3 +14,8 @@ desktop.ini
 .vscode/
 .idea/
 *.swp
+
+# Variáveis de ambiente (NUNCA versionar credenciais)
+.env
+.env.local
+.env.*.local

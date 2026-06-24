@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://neymarjogahoje.com.br/sitemap.xml

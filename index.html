@@ -3,9 +3,19 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <title>O Neymar joga hoje?</title>
-  <meta name="description" content="Descubra agora se o Neymar joga hoje. A resposta definitiva, atualizada em tempo real." />
+
+  <!-- ===== SEO ===== -->
+  <title>O Neymar joga hoje? — Resposta atualizada hoje</title>
+  <meta name="description" content="O Neymar joga hoje? Descubra agora se o Neymar vai jogar hoje. A resposta definitiva, direta e atualizada. Spoiler: provavelmente não." />
+  <meta name="keywords" content="neymar joga hoje, o neymar joga hoje, neymar vai jogar hoje, neymar jogo hoje, que horas o neymar joga, neymar joga hoje que horas, neymar hoje, neymar" />
+  <meta name="author" content="neymarjogahoje" />
+  <meta name="robots" content="index, follow, max-image-preview:large" />
+  <meta name="language" content="Portuguese" />
   <meta name="theme-color" content="#0a0a0a" />
+  <link rel="canonical" href="https://neymarjogahoje.com.br/" />
+
+  <!-- Favicon (bola, sem arquivo extra) -->
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%E2%9A%BD%3C/text%3E%3C/svg%3E" />
 
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-9HV6PS333X"></script>
@@ -19,9 +29,62 @@
 
   <!-- Open Graph / compartilhamento -->
   <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="O Neymar joga hoje?" />
   <meta property="og:title" content="O Neymar joga hoje?" />
-  <meta property="og:description" content="A resposta definitiva. Descubra agora." />
+  <meta property="og:description" content="A resposta definitiva pra pergunta que todo mundo faz: o Neymar joga hoje? Descubra agora." />
+  <meta property="og:url" content="https://neymarjogahoje.com.br/" />
   <meta property="og:locale" content="pt_BR" />
+  <meta property="og:image" content="https://neymarjogahoje.com.br/og.png" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="O Neymar joga hoje?" />
+  <meta name="twitter:description" content="A resposta definitiva. Descubra agora se o Neymar joga hoje." />
+  <meta name="twitter:image" content="https://neymarjogahoje.com.br/og.png" />
+
+  <!-- Dados estruturados (FAQ + site) para resultados ricos no Google -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "name": "O Neymar joga hoje?",
+        "url": "https://neymarjogahoje.com.br/",
+        "inLanguage": "pt-BR"
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "O Neymar joga hoje?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Não. Na grande maioria das vezes o Neymar não joga hoje. Acesse o site para conferir a resposta atualizada."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "O Neymar vai jogar hoje?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Provavelmente não. Entre no site e veja a resposta direta para saber se o Neymar vai jogar hoje."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Que horas o Neymar joga hoje?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Se a resposta for não, não tem horário. O site responde de forma rápida e direta se o Neymar joga hoje."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -78,10 +141,94 @@
     </div>
   </aside>
 
+  <!-- Votação + comentários -->
+  <section class="engage" id="votacao">
+    <!-- Enquete -->
+    <div class="poll">
+      <h2 class="poll__q">Você acha que o Neymar vai jogar hoje?</h2>
+
+      <div class="poll__btns" id="pollButtons">
+        <button class="poll__btn poll__btn--yes" type="button" data-vote="sim">Sim</button>
+        <button class="poll__btn poll__btn--no" type="button" data-vote="nao">Não</button>
+      </div>
+
+      <div class="poll__results" id="pollResults" hidden>
+        <div class="poll__row">
+          <div class="poll__row-top"><span>Sim</span><b id="pctYes">0%</b></div>
+          <div class="poll__bar"><div class="poll__bar-fill poll__bar-fill--yes" id="barYes"></div></div>
+        </div>
+        <div class="poll__row">
+          <div class="poll__row-top"><span>Não</span><b id="pctNo">0%</b></div>
+          <div class="poll__bar"><div class="poll__bar-fill poll__bar-fill--no" id="barNo"></div></div>
+        </div>
+        <p class="poll__total" id="pollTotal"></p>
+      </div>
+    </div>
+
+    <!-- Comentários -->
+    <div class="comments" id="comentarios">
+      <h2 class="comments__title">Comentários</h2>
+
+      <form class="comments__form" id="commentForm" autocomplete="off">
+        <input class="comments__name" id="commentName" type="text" maxlength="60"
+               placeholder="Seu nome" required />
+        <textarea class="comments__text" id="commentText" maxlength="500" rows="3"
+                  placeholder="Escreva um comentário..." required></textarea>
+        <div class="comments__bottom">
+          <span class="comments__count" id="commentCount">0/500</span>
+          <button class="comments__submit" type="submit">Comentar</button>
+        </div>
+      </form>
+
+      <ul class="comments__list" id="commentList"></ul>
+    </div>
+  </section>
+
+  <!-- Conteúdo para SEO: recolhido numa setinha discreta.
+       O <details> mantém o texto no HTML (indexável pelo Google) mesmo fechado. -->
+  <details class="seo" id="sobre">
+    <summary class="seo__toggle" title="Saiba mais">
+      <span class="seo__chevron" aria-hidden="true"></span>
+      <span class="seo__toggle-label">saiba mais</span>
+    </summary>
+    <div class="seo__inner">
+      <h2>O Neymar joga hoje?</h2>
+      <p>
+        Chegou aqui procurando saber se <strong>o Neymar joga hoje</strong>? A resposta é direta:
+        na maioria esmagadora das vezes, <strong>não</strong>. Este site responde de forma rápida e
+        sincera à eterna pergunta dos brasileiros: <em>o Neymar vai jogar hoje?</em>
+      </p>
+
+      <h2>Por que quase sempre é "não"?</h2>
+      <p>
+        Entre lesões, desgastes, suspensões e folgas, o craque acaba ficando de fora com frequência.
+        Por isso, sempre que alguém pergunta se <strong>o Neymar joga hoje</strong>, a aposta mais
+        segura costuma ser a mesma. Aqui você descobre a resposta na hora — no computador ela aparece
+        na tela e no celular é só chacoalhar o aparelho.
+      </p>
+
+      <h2>Perguntas frequentes</h2>
+      <dl class="faq">
+        <dt>O Neymar joga hoje?</dt>
+        <dd>Não. Na maioria das vezes o Neymar não joga hoje. Confira a resposta atualizada no topo da página.</dd>
+
+        <dt>O Neymar vai jogar hoje?</dt>
+        <dd>Provavelmente não. A resposta direta aparece logo no início do site.</dd>
+
+        <dt>Que horas o Neymar joga hoje?</dt>
+        <dd>Se a resposta for "não", não há horário. O site responde rapidamente se o Neymar joga hoje.</dd>
+
+        <dt>Como funciona o site?</dt>
+        <dd>É simples e na zoeira: a resposta para "o Neymar joga hoje?" aparece em letras grandes. No celular, chacoalhe o aparelho para revelar.</dd>
+      </dl>
+    </div>
+  </details>
+
   <footer class="footer">
-    <span id="year"></span> · feito na zoeira ⚽ · <a href="#" id="aboutLink">sobre</a>
+    <span id="year"></span> · feito na zoeira ⚽ · <a href="#sobre" id="aboutLink">sobre</a>
   </footer>
 
   <script src="script.js"></script>
+  <script src="votacao.js"></script>
 </body>
 </html>
