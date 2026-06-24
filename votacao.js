@@ -3,11 +3,10 @@
  *
  *  CAMADA DE API (NeymarAPI)
  *  -------------------------------------------------------------
- *  Por enquanto os dados ficam no NAVEGADOR (localStorage), só
- *  para visualizar a interface funcionando. Quando o backend/
- *  banco estiver pronto, basta trocar o corpo dos 4 métodos
- *  abaixo por chamadas fetch() à API real — o resto do código
- *  não muda (todos retornam Promise).
+ *  Os dados são persistidos pela API real (api.php + Postgres).
+ *  Os 4 métodos abaixo chamam a API via fetch(); o anti-duplo-voto
+ *  por navegador continua no localStorage (getMyVote). Todos
+ *  retornam Promise.
  *
  *  Contrato esperado da API real:
  *    GET  /votos            -> { sim: number, nao: number }
@@ -21,9 +20,7 @@
   // ---------------------------------------------------------------
   //  NeymarAPI — troque o miolo destes métodos pela API real depois
   // ---------------------------------------------------------------
-  var LS_VOTES = "njh_votes";
   var LS_VOTED = "njh_voted";
-  var LS_COMMENTS = "njh_comments";
 
   function lsGet(key, fallback) {
     try { return JSON.parse(localStorage.getItem(key)) || fallback; }
@@ -33,35 +30,37 @@
     try { localStorage.setItem(key, JSON.stringify(value)); } catch (e) {}
   }
 
+  var API = "api.php";
+
+  function pegarJson(resp) { return resp.json(); }
+
   var NeymarAPI = {
     getVotes: function () {
-      // REAL: return fetch(API + "/votos").then(r => r.json());
-      return Promise.resolve(lsGet(LS_VOTES, { sim: 0, nao: 0 }));
+      return fetch(API + "?r=votos").then(pegarJson);
     },
     vote: function (escolha) {
-      // REAL: return fetch(API + "/votos", {method:"POST", body: JSON.stringify({escolha})}).then(r => r.json());
-      var v = lsGet(LS_VOTES, { sim: 0, nao: 0 });
-      if (escolha === "sim" || escolha === "nao") v[escolha]++;
-      lsSet(LS_VOTES, v);
-      lsSet(LS_VOTED, escolha);
-      return Promise.resolve(v);
+      return fetch(API + "?r=votos", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ escolha: escolha })
+      }).then(pegarJson).then(function (v) {
+        lsSet(LS_VOTED, escolha);   // registra o voto deste navegador
+        return v;
+      });
     },
     getMyVote: function () {
-      // Só local: registra que este navegador já votou (a API real
-      // pode usar cookie/IP no servidor).
+      // Anti-duplo-voto por navegador (o servidor não trava por IP — escopo mínimo).
       return lsGet(LS_VOTED, null);
     },
     getComments: function () {
-      // REAL: return fetch(API + "/comentarios").then(r => r.json());
-      return Promise.resolve(lsGet(LS_COMMENTS, []));
+      return fetch(API + "?r=comentarios").then(pegarJson);
     },
     addComment: function (nome, texto) {
-      // REAL: return fetch(API + "/comentarios", {method:"POST", body: JSON.stringify({nome, texto})}).then(r => r.json());
-      var c = { nome: nome, texto: texto, criado_em: new Date().toISOString() };
-      var list = lsGet(LS_COMMENTS, []);
-      list.unshift(c);
-      lsSet(LS_COMMENTS, list.slice(0, 200));
-      return Promise.resolve(c);
+      return fetch(API + "?r=comentarios", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ nome: nome, texto: texto })
+      }).then(pegarJson);
     }
   };
 
